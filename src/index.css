@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", "sans-serif";
+}
+
+.title {
+  font-size: 1.75rem;
+  font-family: "Pacifico", cursive;
+  background-color: transparent;
+  border: none;
+  color: whitesmoke;
+}
+
+.app {
+  color: whitesmoke;
+  min-height: 100vh;
+  background-color: rgb(24, 24, 24);
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.home-wrapper {
+  padding: 0 2rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  align-items: center;
+}
+
+.searchBar {
+  width: 100%;
+  border-radius: 0.5rem;
+  font-size: larger;
+  padding: 0.75rem;
+  color: black;
+}
+
+.memo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.memo-list-empty {
+  display: flex;
+  justify-content: center;
+  margin: 20vh 0;
+}
+
+.memo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background-color: rgb(53, 53, 53);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.detailMemo {
+  min-height: 100vh;
+}
+
+.detailMemo-wrapper {
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+}
+
+.memo-title {
+  font-weight: bold;
+  font-size: 24px;
+  text-decoration: underline;
+}
+
+.newmemo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.newmemo-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(53, 53, 53);
+  width: 80%;
+  max-width: 600px;
+  justify-content: center;
+  gap: 1rem;
+  height: fit-content;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.newmemo--title {
+  text-align: center;
+  margin-bottom: 0.25rem;
+  font-size: 28px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.input-group input,
+.input--body {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  color: black;
+}
+
+.input--body {
+  height: 200px;
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  place-self: end;
+}
+
+.btn-group button {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.btn--add {
+  background-color: rgb(22, 172, 22);
+}
+
+.btn--cancel {
+  background-color: rgb(239, 110, 110);
+}
+
+.btn--delete {
+  background-color: rgb(239, 110, 110);
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.notfound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+}
+
+.notfound-wrapper {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.notfound-wrapper button {
+  padding: 0.75rem;
+  width: fit-content;
+  font-weight: bold;
+  margin: auto;
+}
