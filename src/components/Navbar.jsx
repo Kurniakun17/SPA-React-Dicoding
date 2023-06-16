@@ -1,3 +1,5 @@
+import { faBoxArchive, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,13 +15,22 @@ export const Navbar = () => {
       >
         MemoHub
       </button>
-      <h2
-        onClick={() => {
-          navigate("/addmemo");
-        }}
-      >
-        Add Memo
-      </h2>
+      <div className="navbar-btn-group">
+        <button
+          onClick={() => {
+            navigate("/addmemo");
+          }}
+        >
+          <FontAwesomeIcon size="2xl" icon={faPlus} className="icon" />
+        </button>
+        <button
+          onClick={() => {
+            navigate("/archived");
+          }}
+        >
+          <FontAwesomeIcon size="2xl" icon={faBoxArchive} className="icon" />
+        </button>
+      </div>
     </div>
   );
 };

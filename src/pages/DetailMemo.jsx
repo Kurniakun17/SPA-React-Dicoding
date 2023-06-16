@@ -1,5 +1,10 @@
 import React from "react";
-import { deleteNote, getNote } from "../utils/local-data";
+import {
+  archiveNote,
+  deleteNote,
+  getNote,
+  unarchiveNote,
+} from "../utils/local-data";
 import { useNavigate, useParams } from "react-router-dom";
 import { NotFound } from "./NotFound";
 import parser from "html-react-parser";
@@ -15,6 +20,16 @@ export const DetailMemo = () => {
     deleteNote(note.id);
   };
 
+  const onArchivedHandler = () => {
+    navigate("/archived");
+    archiveNote(note.id);
+  };
+
+  const onUnarchivedHandler = () => {
+    navigate("/home");
+    unarchiveNote(note.id);
+  };
+
   return (
     <>
       {note === undefined ? (
@@ -28,6 +43,17 @@ export const DetailMemo = () => {
             </div>
             <h3 className="memo-createdAt">{note.createdAt}</h3>
             <p className="memo-body">{parser(note.body)}</p>
+            <div className="btn-group"></div>
+            {note.archived === true ? (
+              <button className="btn--archived" onClick={onUnarchivedHandler}>
+                Unarchived
+              </button>
+            ) : (
+              <button className="btn--archived" onClick={onArchivedHandler}>
+                Archived
+              </button>
+            )}
+
             <button className="btn--delete" onClick={onDeleteHandler}>
               Delete
             </button>

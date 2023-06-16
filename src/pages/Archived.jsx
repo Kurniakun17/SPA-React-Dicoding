@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Navbar } from "../components/Navbar";
-import { getAllNotes } from "../utils/local-data";
+import { getAllNotes, getArchivedNotes } from "../utils/local-data";
 import { MemoList } from "../components/MemoList";
+import { Navbar } from "../components/Navbar";
 
-export const Home = () => {
-  const { notes, searchNote, onSearchHandler } = useNotes();
+export const Archived = () => {
+  const { notes, searchNote, onSearchHandler } = useArchivedNotes();
 
   return (
     <div>
       <Navbar />
-      <div className="home-wrapper">
-        <h2>All Memo</h2>
+      <div className="archived-wrapper">
+        <h2>Archived Memo</h2>
         <input
           value={searchNote}
           onChange={(e) => {
@@ -26,14 +26,16 @@ export const Home = () => {
   );
 };
 
-const useNotes = () => {
-  const [notes, setNotes] = useState(getAllNotes());
+const useArchivedNotes = () => {
+  const [notes, setNotes] = useState(getArchivedNotes());
   const [searchNote, setSearchNote] = useState("");
 
   useEffect(() => {
     setNotes(
-      getAllNotes().filter((note) =>
-        note.title.toLocaleLowerCase().includes(searchNote.toLowerCase())
+      getArchivedNotes().filter(
+        (note) =>
+          note.title.toLocaleLowerCase().includes(searchNote.toLowerCase()) &&
+          note.archived === true
       )
     );
   }, [searchNote]);
