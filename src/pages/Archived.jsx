@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getArchivedNotes } from "../utils/local-data";
+import { getArchivedNotes } from "../utils/network-data";
 import { MemoList } from "../components/MemoList";
 import { Navbar } from "../components/Navbar";
 import PropTypes from "prop-types";
 
 export const Archived = ({ onLogOutHandler }) => {
-  const { notes, searchNote, onSearchHandler } = useArchivedNotes();
+  const [notes, searchNote, onSearchHandler] = useArchivedNotes();
 
   return (
     <div>
@@ -28,12 +28,17 @@ export const Archived = ({ onLogOutHandler }) => {
 };
 
 const useArchivedNotes = () => {
-  const [notes, setNotes] = useState(getArchivedNotes());
+  const [notes, setNotes] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState([]);
   const [searchNote, setSearchNote] = useState("");
 
   useEffect(() => {
-    setNotes(
-      getArchivedNotes().filter(
+    getArchivedNotesAsync();
+  }, []);
+
+  useEffect(() => {
+    setFilteredNotes(
+      notes.filter(
         (note) =>
           note.title.toLocaleLowerCase().includes(searchNote.toLowerCase()) &&
           note.archived === true
@@ -41,11 +46,17 @@ const useArchivedNotes = () => {
     );
   }, [searchNote]);
 
+  const getArchivedNotesAsync = async () => {
+    const res = await getArchivedNotes();
+    setNotes(res.data);
+    setFilteredNotes(res.data);
+  };
+
   const onSearchHandler = (e) => {
     setSearchNote(e.target.value);
   };
 
-  return { notes, searchNote, onSearchHandler };
+  return [filteredNotes, searchNote, onSearchHandler];
 };
 
 Archived.propTypes = {

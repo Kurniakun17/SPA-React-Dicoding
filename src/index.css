@@ -8,13 +8,25 @@
   font-family: "Ubuntu", "sans-serif";
 }
 
+:root {
+  --primary: rgb(24, 24, 24);
+  --secondary: rgb(53, 53, 53);
+  --tertiary: whitesmoke;
+}
+
+#root.dark {
+  --primary: #F4F2EC;
+  --secondary: white;
+  --tertiary: rgb(24, 24, 24);
+}
+
 button {
   border: none;
   background-color: transparent;
 }
 
 .icon {
-  color: white;
+  color: var(--tertiary);
 }
 
 .title {
@@ -22,13 +34,13 @@ button {
   font-family: "Pacifico", cursive;
   background-color: transparent;
   border: none;
-  color: whitesmoke;
+  color: var(--tertiary);
 }
 
 .app {
-  color: whitesmoke;
+  color: var(--tertiary);
   width: 100%;
-  background-color: rgb(24, 24, 24);
+  background-color: var(--primary);
   padding-bottom: 1rem;
   min-height: 100vh;
 }
@@ -53,12 +65,12 @@ button {
   gap: 2rem;
 }
 
-.searchBar {
+.searchBar{
   width: 100%;
   border-radius: 0.5rem;
   font-size: larger;
   padding: 0.75rem;
-  color: black;
+  color: var(--tertiary);
 }
 
 .register-wrapper p {
@@ -66,7 +78,7 @@ button {
 }
 
 .link {
-  color: whitesmoke;
+  color: var(--tertiary);
   display: inline-block;
   margin: 1rem 0 0;
 }
@@ -88,7 +100,7 @@ button {
   flex-direction: column;
   gap: 0.75rem;
   padding: 1.5rem;
-  background-color: rgb(53, 53, 53);
+  background-color: var(--secondary);
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -121,7 +133,7 @@ button {
 .register-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: rgb(53, 53, 53);
+  background-color: var(--secondary);
   width: 80%;
   max-width: 600px;
   justify-content: center;
@@ -147,11 +159,12 @@ button {
 
 .input-group input,
 .input--body {
+  border: none;
   width: 100%;
   border-radius: 0.5rem;
   padding: 0.5rem;
-  background-color: white;
-  color: black;
+  background-color: var(--primary);
+  color: var(--tertiary);
 }
 
 .input--body {
@@ -169,7 +182,7 @@ button {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   border: none;
-  color: white;
+  color: var(--tertiary);
   font-weight: bold;
 }
 
@@ -188,7 +201,7 @@ button {
   background-color: rgb(239, 110, 110);
   border: none;
   padding: 0.5rem 1rem;
-  color: white;
+  color: var(--tertiary);
   font-weight: bold;
   border-radius: 0.5rem;
 }
@@ -224,7 +237,7 @@ button {
 }
 
 .notfound button {
-  background-color: white;
+  background-color: var(--tertiary);
   border-radius: 0.75rem;
 }
 
@@ -251,8 +264,16 @@ button {
   bottom: 1rem;
   right: 1rem;
   padding: 1rem;
-  background-color: rgb(81, 81, 81);
+  background-color: var(--tertiary);
   border-radius: 100%;
   z-index: 999;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.floating-add .add {
+  color: var(--primary);
+}
+
+.account{
+  text-align: center;
 }

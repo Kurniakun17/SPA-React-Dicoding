@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useInput } from "../hooks/useInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export const Login = ({ onLoginHandler }) => {
+export const Login = ({ onLoginHandler, user }) => {
   const [email, setEmail] = useInput("");
   const [password, setPassword] = useInput("");
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, []);
+  
   const onLoginClick = () => {
     onLoginHandler(email, password);
   };
@@ -41,7 +48,7 @@ export const Login = ({ onLoginHandler }) => {
         <button className="btn--login" onClick={onLoginClick}>
           Login
         </button>
-        <p>
+        <p className="account">
           Didn't have an account?{" "}
           <Link className="link" to={"/register"}>
             Register

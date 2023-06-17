@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
 
-export const Register = ({ onRegisterHandler }) => {
+export const Register = ({ onRegisterHandler, user }) => {
   const [name, setName] = useInput("");
   const [email, setEmail] = useInput("");
   const [password, setPassword] = useInput("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, []);
 
   const onRegisterClick = () => {
     onRegisterHandler(name, email, password);
@@ -52,9 +59,9 @@ export const Register = ({ onRegisterHandler }) => {
           />
         </div>
         <button className="btn--login" onClick={onRegisterClick}>
-          Login
+          Register
         </button>
-        <p>
+        <p className="account">
           Already have an account?{" "}
           <Link className="link" to={"/login"}>
             Login

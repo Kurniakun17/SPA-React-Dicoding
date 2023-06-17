@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addNote } from "../utils/local-data";
+import { addNote } from "../utils/network-data";
+import { useInput } from "../hooks/useInput";
 
 export const NewMemo = () => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useInput();
   const [body, setBody] = useState();
   const navigate = useNavigate();
 
   const onAddHandler = () => {
+    console.log(title, body);
     addNote({ title, body });
     navigate("/home");
-  };
-
-  const onTitleHandler = (e) => {
-    setTitle(e.target.value);
   };
 
   const onBodyHandler = (e) => {
@@ -30,7 +28,7 @@ export const NewMemo = () => {
             value={title}
             type="text"
             onChange={(e) => {
-              onTitleHandler(e);
+              setTitle(e);
             }}
           />
         </div>

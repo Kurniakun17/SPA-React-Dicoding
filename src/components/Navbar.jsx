@@ -1,14 +1,18 @@
 import {
   faBoxArchive,
+  faMoon,
   faRightFromBracket,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export const Navbar = ({ onLogOutHandler }) => {
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div className="navbar">
       <button
@@ -20,6 +24,15 @@ export const Navbar = ({ onLogOutHandler }) => {
         MemoHub
       </button>
       <div className="navbar-btn-group">
+        {theme === "light" ? (
+          <button onClick={toggleTheme} aria-label="dark theme button">
+            <FontAwesomeIcon size="2xl" icon={faSun} className="icon" />
+          </button>
+        ) : (
+          <button onClick={toggleTheme} aria-label="dark theme button">
+            <FontAwesomeIcon size="2xl" icon={faMoon} className="icon" />
+          </button>
+        )}
         <button
           onClick={() => {
             navigate("/archived");
