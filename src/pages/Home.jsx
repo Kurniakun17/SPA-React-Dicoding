@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { getAllNotes } from "../utils/local-data";
 import { MemoList } from "../components/MemoList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export const Home = () => {
+export const Home = ({ onLogOutHandler }) => {
   const { notes, searchNote, onSearchHandler } = useNotes();
-
+  const navigate = useNavigate();
   return (
     <div>
-      <Navbar />
+      <Navbar onLogOutHandler={onLogOutHandler} />
       <div className="home-wrapper">
         <h2>All Memo</h2>
         <input
@@ -22,6 +26,15 @@ export const Home = () => {
         />
         <MemoList notes={notes} />
       </div>
+      <button
+        onClick={() => {
+          navigate("/addmemo");
+        }}
+        className="floating-add"
+        aria-label="add memo"
+      >
+        <FontAwesomeIcon size="2x" icon={faPlus} className="icon" />
+      </button>
     </div>
   );
 };
@@ -43,4 +56,8 @@ const useNotes = () => {
   };
 
   return { notes, searchNote, onSearchHandler };
+};
+
+Home.propTypes = {
+  onLogOutHandler: PropTypes.func.isRequired,
 };

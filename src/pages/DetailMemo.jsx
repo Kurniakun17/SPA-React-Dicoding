@@ -9,8 +9,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { NotFound } from "./NotFound";
 import parser from "html-react-parser";
 import { Navbar } from "../components/Navbar";
+import PropTypes from "prop-types";
 
-export const DetailMemo = () => {
+export const DetailMemo = ({ onLogOutHandler }) => {
   const { id } = useParams();
   const note = getNote(id);
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ export const DetailMemo = () => {
         <NotFound />
       ) : (
         <div className="detailMemo">
-          <Navbar />
+          <Navbar onLogOutHandler={onLogOutHandler} />
           <div className="memo detailMemo-wrapper">
             <div className="detailMemo--top">
               <h2 className="memo-title">{note.title}</h2>
@@ -62,4 +63,8 @@ export const DetailMemo = () => {
       )}
     </>
   );
+};
+
+DetailMemo.propTypes = {
+  onLogOutHandler: PropTypes.func.isRequired,
 };

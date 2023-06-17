@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { getAllNotes, getArchivedNotes } from "../utils/local-data";
+import { getArchivedNotes } from "../utils/local-data";
 import { MemoList } from "../components/MemoList";
 import { Navbar } from "../components/Navbar";
+import PropTypes from "prop-types";
 
-export const Archived = () => {
+export const Archived = ({ onLogOutHandler }) => {
   const { notes, searchNote, onSearchHandler } = useArchivedNotes();
 
   return (
     <div>
-      <Navbar />
+      <Navbar onLogOutHandler={onLogOutHandler} />
       <div className="archived-wrapper">
         <h2>Archived Memo</h2>
         <input
@@ -45,4 +46,8 @@ const useArchivedNotes = () => {
   };
 
   return { notes, searchNote, onSearchHandler };
+};
+
+Archived.propTypes = {
+  onLogOutHandler: PropTypes.func.isRequired,
 };

@@ -27,8 +27,10 @@ button {
 
 .app {
   color: whitesmoke;
-  min-height: 100vh;
+  width: 100%;
   background-color: rgb(24, 24, 24);
+  padding-bottom: 1rem;
+  min-height: 100vh;
 }
 
 .home-wrapper,
@@ -57,6 +59,16 @@ button {
   font-size: larger;
   padding: 0.75rem;
   color: black;
+}
+
+.register-wrapper p {
+  text-align: center;
+}
+
+.link {
+  color: whitesmoke;
+  display: inline-block;
+  margin: 1rem 0 0;
 }
 
 .memo-list {
@@ -104,7 +116,9 @@ button {
   min-height: 100vh;
 }
 
-.newmemo-wrapper {
+.newmemo-wrapper,
+.login-wrapper,
+.register-wrapper {
   display: flex;
   flex-direction: column;
   background-color: rgb(53, 53, 53);
@@ -117,7 +131,9 @@ button {
   border-radius: 1rem;
 }
 
-.newmemo--title {
+.newmemo--title,
+.login--title,
+.register--title {
   text-align: center;
   margin-bottom: 0.25rem;
   font-size: 28px;
@@ -166,7 +182,9 @@ button {
 }
 
 .btn--delete,
-.btn--archived {
+.btn--archived,
+.btn--login,
+.btn--register {
   background-color: rgb(239, 110, 110);
   border: none;
   padding: 0.5rem 1rem;
@@ -175,11 +193,29 @@ button {
   border-radius: 0.5rem;
 }
 
+.btn--login,
+.btn--register {
+  background-color: cadetblue;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn--register {
+  background-color: cadetblue;
+}
+
 .btn--archived {
   background-color: rgb(254, 165, 0);
 }
 
-.notfound {
+.login-wrapper,
+.register-wrapper {
+  margin: auto;
+}
+
+.notfound,
+.login,
+.register {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -207,4 +243,16 @@ button {
   width: fit-content;
   font-weight: bold;
   margin: auto;
+}
+
+.floating-add {
+  display: block;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  background-color: rgb(81, 81, 81);
+  border-radius: 100%;
+  z-index: 999;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
