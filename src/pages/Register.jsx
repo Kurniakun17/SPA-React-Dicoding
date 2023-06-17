@@ -74,6 +74,6 @@ export const Register = ({ onRegisterHandler, user }) => {
 };
 
 Register.propTypes = {
-  onLogOutHandler: PropTypes.func.isRequired,
+  onRegisterHandler: PropTypes.func.isRequired,
   user: PropTypes.string,
 };

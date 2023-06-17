@@ -9,15 +9,15 @@
 }
 
 :root {
-  --primary: rgb(24, 24, 24);
-  --secondary: rgb(53, 53, 53);
-  --tertiary: whitesmoke;
+  --primary: #f4f2ec;
+  --secondary: white;
+  --tertiary: rgb(24, 24, 24);
 }
 
 #root.dark {
-  --primary: #F4F2EC;
-  --secondary: white;
-  --tertiary: rgb(24, 24, 24);
+  --primary: rgb(24, 24, 24);
+  --secondary: rgb(53, 53, 53);
+  --tertiary: whitesmoke;
 }
 
 button {
@@ -65,7 +65,7 @@ button {
   gap: 2rem;
 }
 
-.searchBar{
+.searchBar {
   width: 100%;
   border-radius: 0.5rem;
   font-size: larger;
@@ -274,6 +274,6 @@ button {
   color: var(--primary);
 }
 
-.account{
+.account {
   text-align: center;
 }

@@ -61,6 +61,6 @@ export const Login = ({ onLoginHandler, user }) => {
 };
 
 Login.propTypes = {
-  onLogOutHandler: PropTypes.func.isRequired,
+  onLoginHandler: PropTypes.func.isRequired,
   user: PropTypes.string,
 };

@@ -26,11 +26,11 @@ export const Navbar = ({ onLogOutHandler }) => {
       <div className="navbar-btn-group">
         {theme === "light" ? (
           <button onClick={toggleTheme} aria-label="dark theme button">
-            <FontAwesomeIcon size="2xl" icon={faSun} className="icon" />
+            <FontAwesomeIcon size="2xl" icon={faMoon} className="icon" />
           </button>
         ) : (
           <button onClick={toggleTheme} aria-label="dark theme button">
-            <FontAwesomeIcon size="2xl" icon={faMoon} className="icon" />
+            <FontAwesomeIcon size="2xl" icon={faSun} className="icon" />
           </button>
         )}
         <button

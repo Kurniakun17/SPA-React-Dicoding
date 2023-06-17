@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { DetailMemo } from "./pages/DetailMemo";
 import { NotFound } from "./pages/NotFound";
@@ -9,22 +9,23 @@ import { Login } from "./pages/Login";
 import { useEffect, useState } from "react";
 import {
   getAccessToken,
+  getLocalStorageTheme,
   getUserLogged,
   login,
   putAccessToken,
+  putLocalStorageTheme,
   register,
-  userLogOut,
+  removeAccessToken,
 } from "./utils/network-data";
 import { ThemeContext } from "./contexts/ThemeContext";
 
 function App() {
   const navigate = useNavigate();
-  const [user, setUser, loading] = useUserData();
+  const [user, setUser, loading] = useUserData(navigate);
   const [theme, toggleTheme] = useTheme();
 
   const onLoginHandler = async (email, password) => {
     const res = await login({ email, password });
-    console.log(res);
     if (!res.error) {
       putAccessToken(res.data.accessToken);
       const loggedIn = await getUserLogged();
@@ -43,7 +44,7 @@ function App() {
   };
 
   const onLogOutHandler = () => {
-    userLogOut();
+    removeAccessToken();
     setUser(null);
     navigate("/login");
   };
@@ -84,6 +85,7 @@ function App() {
             path="/login"
             element={<Login onLoginHandler={onLoginHandler} user={user} />}
           />
+          <Route path="/" element={<Navigate to={"/home"} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
@@ -92,7 +94,7 @@ function App() {
 }
 
 const useTheme = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(getLocalStorageTheme() || "light");
 
   useEffect(() => {
     const app = document.getElementById("root");
@@ -105,15 +107,17 @@ const useTheme = () => {
   const toggleTheme = () => {
     if (theme === "light") {
       setTheme("dark");
+      putLocalStorageTheme("dark");
     } else {
       setTheme("light");
+      putLocalStorageTheme("light");
     }
   };
 
   return [theme, toggleTheme];
 };
 
-const useUserData = () => {
+const useUserData = (navigate) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -121,6 +125,7 @@ const useUserData = () => {
     if (getAccessToken()) {
       getUserAsync();
     } else {
+      navigate("/login");
       setLoading(false);
     }
   }, [user]);
@@ -129,8 +134,10 @@ const useUserData = () => {
     const res = await getUserLogged();
     if (!res.error) {
       setUser(res.data.name);
-      setLoading(false);
+    } else {
+      removeAccessToken();
     }
+    setLoading(false);
   };
 
   return [user, setUser, loading];
