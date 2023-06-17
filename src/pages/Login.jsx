@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useInput } from "../hooks/useInput";
 import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const Login = ({ onLoginHandler, user }) => {
   const [email, setEmail] = useInput("");
@@ -12,7 +13,7 @@ export const Login = ({ onLoginHandler, user }) => {
       navigate("/home");
     }
   }, []);
-  
+
   const onLoginClick = () => {
     onLoginHandler(email, password);
   };
@@ -57,4 +58,9 @@ export const Login = ({ onLoginHandler, user }) => {
       </div>
     </div>
   );
+};
+
+Login.propTypes = {
+  onLogOutHandler: PropTypes.func.isRequired,
+  user: PropTypes.string,
 };

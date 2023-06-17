@@ -86,4 +86,5 @@ const useNotes = (user, navigate) => {
 
 Home.propTypes = {
   onLogOutHandler: PropTypes.func.isRequired,
+  user: PropTypes.string,
 };

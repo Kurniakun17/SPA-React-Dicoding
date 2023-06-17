@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
+import PropTypes from "prop-types";
 
 export const Register = ({ onRegisterHandler, user }) => {
   const [name, setName] = useInput("");
@@ -70,4 +71,9 @@ export const Register = ({ onRegisterHandler, user }) => {
       </div>
     </div>
   );
+};
+
+Register.propTypes = {
+  onLogOutHandler: PropTypes.func.isRequired,
+  user: PropTypes.string,
 };
